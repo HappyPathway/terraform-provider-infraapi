@@ -8,8 +8,8 @@ import (
 	"flag"
 	"log"
 
+	"github.com/HappyPathway/terraform-provider-infraapi/internal/provider"
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
-	"github.com/hashicorp/terraform-provider-scaffolding-framework/internal/provider"
 )
 
 // Run "go generate" to format example terraform files and generate the docs for the registry/website
@@ -23,12 +23,11 @@ import (
 //go:generate go run github.com/hashicorp/terraform-plugin-docs/cmd/tfplugindocs
 
 var (
-	// these will be set by the goreleaser configuration
-	// to appropriate values for the compiled binary.
-	version string = "dev"
+// these will be set by the goreleaser configuration
+// to appropriate values for the compiled binary.
 
-	// goreleaser can pass other information to the main package, such as the specific commit
-	// https://goreleaser.com/cookbooks/using-main.version/
+// goreleaser can pass other information to the main package, such as the specific commit
+// https://goreleaser.com/cookbooks/using-main.version/
 )
 
 func main() {
@@ -39,11 +38,11 @@ func main() {
 
 	opts := providerserver.ServeOpts{
 		// TODO: Update this string with the published name of your provider.
-		Address: "registry.terraform.io/hashicorp/scaffolding",
+		Address: "registry.terraform.io/HappyPathway/infraapi",
 		Debug:   debug,
 	}
 
-	err := providerserver.Serve(context.Background(), provider.New(version), opts)
+	err := providerserver.Serve(context.Background(), provider.NewinfraapiProvider, opts)
 
 	if err != nil {
 		log.Fatal(err.Error())

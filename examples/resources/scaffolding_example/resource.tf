@@ -1,3 +1,3 @@
-resource "scaffolding_example" "example" {
+resource "infraapi" "example" {
   configurable_attribute = "some-value"
 }
